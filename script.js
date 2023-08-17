@@ -1,23 +1,17 @@
 'use strict';
 
-// //Returning a Function.
+//Returning a Function.
 
-// const greatUs = function (name) {
-//   return () => {};
-// };
+const greet = function (greeting) {
+  return name => {
+    console.log(`${greeting} ${name}`);
+    console.log(`Greetings by ${greet.name}`);
+  };
+};
 
-// const grit = ['Hello Mr', 'Hello Mrs'];
-
-// const gri = arr => {
-//   for (const gret of arr) {
-//     if (gret.includes('Mr')) return gret;
-//   }
-// };
-// const greet = (arr, fn) => name => console.log(`${fn(arr)}: ${name}`);
-
-// greet(grit, gri)('Adetayo Adebowale Olayiwola');
-
-// console.log(greet(gri));
+let greeter = greet('Hello');
+//greeter is now a new function, returned by greet. It will now take its own parameters.
+greeter('Ogunji');
 
 // //HIGHER ORDER FUNTIONS.
 
