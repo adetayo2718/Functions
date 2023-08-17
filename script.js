@@ -2,20 +2,20 @@
 
 // //Returning a Function.
 
-const greatUs = function (name) {
-  return () => {};
-};
+// const greatUs = function (name) {
+//   return () => {};
+// };
 
-const grit = ['Hello Mr', 'Hello Mrs'];
+// const grit = ['Hello Mr', 'Hello Mrs'];
 
-const gri = arr => {
-  for (const gret of arr) {
-    if (gret.includes('Mr')) return gret;
-  }
-};
-const greet = (arr, fn) => name => console.log(`${fn(arr)}: ${name}`);
+// const gri = arr => {
+//   for (const gret of arr) {
+//     if (gret.includes('Mr')) return gret;
+//   }
+// };
+// const greet = (arr, fn) => name => console.log(`${fn(arr)}: ${name}`);
 
-greet(grit, gri)('Adetayo Adebowale Olayiwola');
+// greet(grit, gri)('Adetayo Adebowale Olayiwola');
 
 // console.log(greet(gri));
 
