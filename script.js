@@ -1,68 +1,69 @@
 'use strict';
 
-// THE BIND METHOD
-//example.
+// // THE BIND METHOD
+// //example.
 
-const resturant = {
-  name: 'Lacusine',
-  owner: 'Agbaje Lawal',
-  mainMenu: ['Rice', 'Beans', 'Swallow'],
-  starterMenu: ['ice cream', 'cake', 'Fruits'],
-  orderBookings: [],
-  plane: 300,
-  buyPlane() {
-    console.log(this);
+// const resturant = {
+//   name: 'Lacusine',
+//   owner: 'Agbaje Lawal',
+//   mainMenu: ['Rice', 'Beans', 'Swallow'],
+//   starterMenu: ['ice cream', 'cake', 'Fruits'],
+//   orderBookings: [],
+//   plane: 300,
+//   buyPlane() {
+//     console.log(this);
 
-    this.plane++;
-    console.log(this.plane);
-  },
-  order(mainMenuIndex = 1, starterMenuIndex = 0, customer) {
-    console.log(
-      `${customer} ordered for ${this.mainMenu[mainMenuIndex]} with ${this.starterMenu[starterMenuIndex]} as starter from ${this.name}.`
-    );
-    this.orderBookings.push(
-      `${customer} ordered: ${this.mainMenu[mainMenuIndex]} with ${this.starterMenu[starterMenuIndex]} as starter from ${this.name}.`
-    );
-  },
-};
+//     this.plane++;
+//     console.log(this.plane);
+//   },
+//   order(mainMenuIndex = 1, starterMenuIndex = 0, customer) {
+//     console.log(
+//       `${customer} ordered for ${this.mainMenu[mainMenuIndex]} with ${this.starterMenu[starterMenuIndex]} as starter from ${this.name}.`
+//     );
+//     this.orderBookings.push(
+//       `${customer} ordered: ${this.mainMenu[mainMenuIndex]} with ${this.starterMenu[starterMenuIndex]} as starter from ${this.name}.`
+//     );
+//   },
+// };
 
-const resturant2 = {
-  name: 'Belajio',
-  owner: 'Agbaje Lawal',
-  mainMenu: ['Ofe Onugbu', 'isi ewu', 'egusi'],
-  starterMenu: ['strawberries', 'pawpaw', 'orange'],
-  orderBookings: [],
-};
+// const resturant2 = {
+//   name: 'Belajio',
+//   owner: 'Agbaje Lawal',
+//   mainMenu: ['Ofe Onugbu', 'isi ewu', 'egusi'],
+//   starterMenu: ['strawberries', 'pawpaw', 'orange'],
+//   orderBookings: [],
+// };
 
-const order = resturant.order;
+// const order = resturant.order;
 
-const orderRes2 = order.bind(resturant2, 2, 0);
-orderRes2('sule igbira');
+// const orderRes2 = order.bind(resturant2, 2, 0);
+// orderRes2('sule igbira');
 
-// USING THE BIND METHOD WITH EVENT LISTENERS
+// // USING THE BIND METHOD WITH EVENT LISTENERS
 
-document
-  .querySelector('.buy')
-  .addEventListener('click', resturant.buyPlane.bind(resturant));
+// document
+//   .querySelector('.buy')
+//   .addEventListener('click', resturant.buyPlane.bind(resturant));
 
-//PARTIAL APPLICATION
+// //PARTIAL APPLICATION
 
-const addVat = (rate, value) => console.log(value + value * rate);
-addVat(0.1, 23);
+// const addVat = (rate, value) => console.log(value + value * rate);
+// addVat(0.1, 23);
 
-//with bind
-const addVatRate = addVat.bind(null, 0.097);
-addVatRate(23);
-// // //The call and Apply Method.
+// //with bind
+// const addVatRate = addVat.bind(null, 0.097);
+// addVatRate(23);
+// // // //The call and Apply Method.
 
-const vatCal = function (rate) {
-  return function (value) {
-    const vat = rate * value;
-    console.log(vat);
-  };
-};
+// const vatCal = function (rate) {
+//   return function (value) {
+//     const vat = rate * value;
+//     console.log(vat);
+//   };
+// };
 
-vatCal(0.1)(10000);
+// const vatCalulator = vatCal(0.2);
+// vatCalulator(200);
 
 // const resturant = {
 //   name: 'Lacusine',
