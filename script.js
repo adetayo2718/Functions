@@ -1,17 +1,172 @@
 'use strict';
 
-//Returning a Function.
+// THE BIND METHOD
+//example.
 
-const greet = function (greeting) {
-  return name => {
-    console.log(`${greeting} ${name}`);
-    console.log(`Greetings by ${greet.name}`);
+const resturant = {
+  name: 'Lacusine',
+  owner: 'Agbaje Lawal',
+  mainMenu: ['Rice', 'Beans', 'Swallow'],
+  starterMenu: ['ice cream', 'cake', 'Fruits'],
+  orderBookings: [],
+  plane: 300,
+  buyPlane() {
+    console.log(this);
+
+    this.plane++;
+    console.log(this.plane);
+  },
+  order(mainMenuIndex = 1, starterMenuIndex = 0, customer) {
+    console.log(
+      `${customer} ordered for ${this.mainMenu[mainMenuIndex]} with ${this.starterMenu[starterMenuIndex]} as starter from ${this.name}.`
+    );
+    this.orderBookings.push(
+      `${customer} ordered: ${this.mainMenu[mainMenuIndex]} with ${this.starterMenu[starterMenuIndex]} as starter from ${this.name}.`
+    );
+  },
+};
+
+const resturant2 = {
+  name: 'Belajio',
+  owner: 'Agbaje Lawal',
+  mainMenu: ['Ofe Onugbu', 'isi ewu', 'egusi'],
+  starterMenu: ['strawberries', 'pawpaw', 'orange'],
+  orderBookings: [],
+};
+
+const order = resturant.order;
+
+const orderRes2 = order.bind(resturant2, 2, 0);
+orderRes2('sule igbira');
+
+// USING THE BIND METHOD WITH EVENT LISTENERS
+
+document
+  .querySelector('.buy')
+  .addEventListener('click', resturant.buyPlane.bind(resturant));
+
+//PARTIAL APPLICATION
+
+const addVat = (rate, value) => console.log(value + value * rate);
+addVat(0.1, 23);
+
+//with bind
+const addVatRate = addVat.bind(null, 0.097);
+addVatRate(23);
+// // //The call and Apply Method.
+
+const vatCal = function (rate) {
+  return function (value) {
+    const vat = rate * value;
+    console.log(vat);
   };
 };
 
-let greeter = greet('Hello');
-//greeter is now a new function, returned by greet. It will now take its own parameters.
-greeter('Ogunji');
+vatCal(0.1)(10000);
+
+// const resturant = {
+//   name: 'Lacusine',
+//   owner: 'Agbaje Lawal',
+//   mainMenu: ['Rice', 'Beans', 'Swallow'],
+//   starterMenu: ['ice cream', 'cake', 'Fruits'],
+//   orderBookings: [],
+//   order(mainMenuIndex = 1, starterMenuIndex = 0, customer) {
+//     console.log(
+//       `${customer} ordered for ${this.mainMenu[mainMenuIndex]} with ${this.starterMenu[starterMenuIndex]} as starter from ${this.name}.`
+//     );
+//     this.orderBookings.push(
+//       `${customer} ordered: ${this.mainMenu[mainMenuIndex]} with ${this.starterMenu[starterMenuIndex]} as starter from ${this.name}.`
+//     );
+//   },
+// };
+
+// const resturant2 = {
+//   name: 'Belajio',
+//   owner: 'Agbaje Lawal',
+//   mainMenu: ['Ofe Onugbu', 'isi ewu', 'egusi'],
+//   starterMenu: ['strawberries', 'pawpaw', 'orange'],
+//   orderBookings: [],
+// };
+
+// // /* TO use the Call Method, We need to store the function in a variable.*/
+
+// const order = resturant.order;
+
+// const orderItems = [1, 1, 'Racheal Abayo'];
+
+// const orderItems2 = [, , 'Racheal Abayo'];
+
+// order.call(resturant, 2, 1, 'Olashile Omofolain');
+// console.log(resturant.orderBookings);
+
+// order.call(resturant2, 2, 1, 'Saheed Shittu');
+// console.log(resturant2.orderBookings);
+
+//APPLY METHOD => THE Apply method is the same with the call method, it has the only difference is, (it take the object the this. keyword is pointing to and an array of items as its arguement. ) eg.
+
+// order.apply(resturant, orderItems);
+// console.log(resturant.orderBookings);
+
+// order.apply(resturant, orderItems2);
+// console.log(resturant.orderBookings);
+
+//This method is not being used often in the new JS es6 -> because of the spread operators
+// order.call(resturant, ...orderItems);
+
+//THE CALL METHOD
+// const lufthansa = {
+//   airline: 'Lufthansa',
+//   iataCode: 'LH',
+//   bookings: [],
+//   book(flightNum, name, fn) {
+//     //the this. keyword is referring to the lufthansa object. this. is used to assess other properties in an object from an object method
+//     console.log(
+//       `${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}`
+//     );
+//     this.bookings.push(`Flight ${this.iataCode}${flightNum} ` + name);
+//   },
+// };
+
+// lufthansa.book(239, 'Jonas Schmedtman');
+// lufthansa.book(995, 'John Dough');
+// lufthansa.book(200, 'John Dough');
+// console.log(lufthansa.bookings);
+
+// //Creating a new airline.
+// const eurowings = {
+//   airline: 'eurowing',
+//   iataCode: 'EL',
+//   bookings: [],
+// };
+
+// //WE COULD SET THE BOOK FUNCTION TO A NEW VARIABLE AND USE IT ON THE SECOND AIRLINE, HOWEVER, THAT WILL NOT WORK BECAUSE THE this. KEYWORD WILL BE UNDEFINED. e.g.
+
+// const book = lufthansa.book;
+
+// // book(23, 'Sarah Williams')
+// /* this will not work because the this. keyword from the lufthansa.book method will not apply on the eurowings method. */
+
+// //To introduce the call, we can link two different object together to use the same this. keyword, we use the CALL method
+// //The call method will take in 2 set of arguements. 1. THE this.arg(that is, the new object we are pointing to) 2. The arguements of the original function.
+
+// book.call(eurowings, 23, 'Sarah Williams');
+// book.call(eurowings, 23, 'Taiwo Dada');
+// book.call(lufthansa, 23, 'john Williams');
+// console.log(eurowings);
+// console.log(lufthansa);
+
+// //Returning a Function.
+
+// const greet = function (greeting) {
+//   return name => {
+//     console.log(`${greeting} ${name}`);
+//     console.log(`Greetings by ${greet.name}`);
+//   };
+// };
+
+// let greeter = greet('Hello');
+// //greeter is now a new function, returned by greet. It will now take its own parameters.
+// greeter('Ogunji');
 
 // //HIGHER ORDER FUNTIONS.
 
