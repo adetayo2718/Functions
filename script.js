@@ -1,5 +1,39 @@
 'use strict';
 
+//CLOSURES.
+
+const secureBooking = function () {
+  let passengerCount = 0;
+
+  return function () {
+    passengerCount++;
+    if (passengerCount <= 1)
+      console.log(`There is:  ${passengerCount} passenger`);
+    else console.log(`There are: ${passengerCount} passengers`);
+  };
+};
+
+const booker = secureBooking();
+booker();
+booker();
+booker();
+
+// //IMMEDIATELY INVOKED FUNCTION EXPRESSION IIFE.
+// //this is used when you just want to run a set of code once.
+
+// function buyNow() {
+//   console.log(`We bought it already`);
+// }
+// buyNow(); /* This could still be called somewhere else because its stored in a variable*/
+
+// (function () {
+//   console.log(`This will display once `);
+// })(); /*The function throws an error because the function name is not declared and the is not assigned to any variable*/
+
+// /* The above function works beccause the whole function was wrapperd in a parenthesis (), and it was immediately called after. */
+
+// (() => console.log(`This will ALSO work`))();
+
 // // THE BIND METHOD
 // //example.
 
