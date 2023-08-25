@@ -1,22 +1,65 @@
 'use strict';
 
-//CLOSURES.
+//More examples on closure
 
-const secureBooking = function () {
-  let passengerCount = 0;
+// EXAMPLE 1
 
-  return function () {
-    passengerCount++;
-    if (passengerCount <= 1)
-      console.log(`There is:  ${passengerCount} passenger`);
-    else console.log(`There are: ${passengerCount} passengers`);
+let f;
+
+const g = () => {
+  const a = 23;
+
+  f = () => {
+    console.log(`Double is equal to: ${a * 2}`);
   };
 };
 
-const booker = secureBooking();
-booker();
-booker();
-booker();
+const h = () => {
+  const b = 778;
+
+  f = () => {
+    console.log(`Double is equal to: ${b * 2}`);
+  };
+};
+
+console.log(f);
+g();
+f();
+h();
+f();
+
+// EXAMPLE 2
+
+const bookPassengers = (passNum, waitTime) => {
+  const passengerGroup = passNum / 3;
+
+  setTimeout(function () {
+    console.log(`There are ${passNum} Passengers waiting to board`);
+    console.log(`We will book passengers in ${passengerGroup} groups`);
+  }, waitTime * 1000);
+
+  console.log(`We will start booking passengers in ${waitTime} mintues`);
+};
+
+bookPassengers(210, 2);
+
+// //CLOSURES.
+
+// const secureBooking = function () {
+//   let passengerCount = 0;
+
+//   return function () {
+//     passengerCount++;
+//     if (passengerCount <= 1)
+//       console.log(`There is:  ${passengerCount} passenger`);
+//     else console.log(`There are: ${passengerCount} passengers`);
+//   };
+// };
+
+// const booker = secureBooking();
+// booker();
+// booker();
+// booker();
 
 // //IMMEDIATELY INVOKED FUNCTION EXPRESSION IIFE.
 // //this is used when you just want to run a set of code once.
